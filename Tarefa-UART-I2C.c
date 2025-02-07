@@ -31,8 +31,7 @@ int main()
     bool cor = true;
 
     while (true) {
-        ssd1306_fill(&ssd, !cor);
-        ssd1306_draw_string(&ssd, "TESTE", 8, 10); // Desenha uma string para fins de testes
+        ssd1306_draw_string(&ssd, "a b c d e f g h i j k l m n o", 8, 10); // Desenha uma string para fins de testes
         ssd1306_send_data(&ssd);
         sleep_ms(1000);
     }

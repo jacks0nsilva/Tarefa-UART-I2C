@@ -157,15 +157,24 @@ void ssd1306_vline(ssd1306_t *ssd, uint8_t x, uint8_t y0, uint8_t y1, bool value
 void ssd1306_draw_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y)
 {
   uint16_t index = 0;
-  char ver=c;
-  if (c >= 'A' && c <= 'Z')
+
+  if (c >= '0' && c <= '9')
   {
-    index = (c - 'A' + 11) * 8; // Para letras maiúsculas
-  }else  if (c >= '0' && c <= '9')
-  {
-    index = (c - '0' + 1) * 8; // Adiciona o deslocamento necessário
+    index = (c - '0' + 1) * 8;  // Índices 1-10 para números
   }
-  
+  else if (c >= 'A' && c <= 'Z')
+  {
+    index = (c - 'A' + 11) * 8; // Índices 11-36 para letras maiúsculas
+  }
+  else if (c >= 'a' && c <= 'z')
+  {
+    index = (c - 'a' + 37) * 8; // Índices 37-62 para letras minúsculas
+  }
+  else
+  {
+    return; // Se o caractere não for reconhecido, não faz nada
+  }
+
   for (uint8_t i = 0; i < 8; ++i)
   {
     uint8_t line = font[index + i];
