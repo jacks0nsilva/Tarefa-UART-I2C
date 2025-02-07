@@ -35,13 +35,13 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Tarefa-UART-I2C Tarefa-UART-I2C.c )
+add_executable(Tarefa-UART-I2C Tarefa-UART-I2C.c libs/ssd1306.c)
 
 pico_set_program_name(Tarefa-UART-I2C "Tarefa-UART-I2C")
 pico_set_program_version(Tarefa-UART-I2C "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(Tarefa-UART-I2C 0)
+pico_enable_stdio_uart(Tarefa-UART-I2C 1)
 pico_enable_stdio_usb(Tarefa-UART-I2C 0)
 
 # Add the standard library to the build

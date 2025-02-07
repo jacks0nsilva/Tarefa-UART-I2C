@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/Tarefa-UART-I2C.uf2'
+elf = 'build/Tarefa-UART-I2Ce.elf'
