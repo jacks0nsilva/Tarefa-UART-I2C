@@ -28,19 +28,20 @@ int main()
     ssd1306_fill(&ssd, false);
     ssd1306_send_data(&ssd);
 
-    bool cor = true;
-
     while (true) {
         if(stdio_usb_connected()){
             char c;
-            printf("USB Conectado\n");
+
             printf("Digite um caractere para ser exibido no display\n");
+            ssd1306_draw_string(&ssd, "TECLA: ",2,4);
             if(scanf("%c", &c) == 1 && c >= 'A'&& c <= 'z' ){
-                ssd1306_draw_char(&ssd, c, 0, 0);
+                ssd1306_draw_char(&ssd, c, 58, 4);
                 ssd1306_send_data(&ssd);
             } else if(c >= '0' && c <= '9'){
                 printf("Número de zero a nova digitado\n");
                 printf("Chama função que imprime o número na matriz de LED 5X5\n");
+                ssd1306_draw_char(&ssd, c, 58, 4);
+                ssd1306_send_data(&ssd);
             } else{
                 printf("Caractere inválido\n");
             }
