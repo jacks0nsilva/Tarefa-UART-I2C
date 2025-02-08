@@ -41,6 +41,7 @@
     "pio_config.h": "c",
     "number_leds.h": "c",
     "ws2812.pio.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "font.h": "c"
   }
 }
