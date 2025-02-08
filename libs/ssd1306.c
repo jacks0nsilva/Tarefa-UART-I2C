@@ -158,17 +158,17 @@ void ssd1306_draw_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y)
 {
   uint16_t index = 0;
 
-  if (c >= '0' && c <= '9')
+  if (c >= '0' && c <= ':')
   {
-    index = (c - '0' + 1) * 8;  // Índices 1-10 para números
+    index = (c - '0' + 1) * 8;  // Índices 1-10 para números e dois pontos
   }
   else if (c >= 'A' && c <= 'Z')
   {
-    index = (c - 'A' + 11) * 8; // Índices 11-36 para letras maiúsculas
+    index = (c - 'A' + 12) * 8; // Índices 12-37 para letras maiúsculas
   }
   else if (c >= 'a' && c <= 'z')
   {
-    index = (c - 'a' + 37) * 8; // Índices 37-62 para letras minúsculas
+    index = (c - 'a' + 38) * 8; // Índices 38-63 para letras minúsculas
   }
   else
   {
