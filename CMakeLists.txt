@@ -35,7 +35,8 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Tarefa-UART-I2C Tarefa-UART-I2C.c libs/ssd1306.c)
+add_executable(Tarefa-UART-I2C Tarefa-UART-I2C.c 
+libs/src/ssd1306.c)
 
 pico_set_program_name(Tarefa-UART-I2C "Tarefa-UART-I2C")
 pico_set_program_version(Tarefa-UART-I2C "0.1")
@@ -59,7 +60,8 @@ target_include_directories(Tarefa-UART-I2C PRIVATE
 # Add any user requested libraries
 target_link_libraries(Tarefa-UART-I2C 
         hardware_i2c
-        
+        hardware_pio
+        hardware_clocks
         )
 
 pico_add_extra_outputs(Tarefa-UART-I2C)

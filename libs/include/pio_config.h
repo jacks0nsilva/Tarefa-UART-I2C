@@ -1,3 +1,6 @@
+#ifndef PIO_CONFIG_H
+#define PIO_CONFIG_H
+
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -69,3 +72,4 @@ void np_clear(){
         put_pixel(0); // Desliga todos os LEDs
     }
 }
+#endif
