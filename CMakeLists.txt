@@ -40,6 +40,9 @@ add_executable(Tarefa-UART-I2C Tarefa-UART-I2C.c libs/ssd1306.c)
 pico_set_program_name(Tarefa-UART-I2C "Tarefa-UART-I2C")
 pico_set_program_version(Tarefa-UART-I2C "0.1")
 
+# Generate PIO header
+pico_generate_pio_header(Tarefa-UART-I2C ${CMAKE_CURRENT_LIST_DIR}/ws2812.pio)
+
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(Tarefa-UART-I2C 1)
 pico_enable_stdio_usb(Tarefa-UART-I2C 1)
