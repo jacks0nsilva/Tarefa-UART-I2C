@@ -78,31 +78,22 @@ int main()
 
 
     np_init(MATRIZ_LEDS); // Inicializa a máquina de estados dos LEDs 5x5
-
+    np_clear(MATRIZ_LEDS); // Limpa a matriz de LEDs
     initialize_gpio(gpio_pins); // Inicializa os pinos GPIO (LEDs verde, azul e botões A e B)
 
     // Configura a interrupção dos botões A e B
     gpio_set_irq_enabled_with_callback(gpio_pins[0].pin, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
     gpio_set_irq_enabled(gpio_pins[1].pin, GPIO_IRQ_EDGE_FALL, true);
 
-    
-
-    // Exibe uma mensagem de inicialização no display OLED
-    for(int i =5; i > 0; i-- ){
-        char frase[20];
-        sprintf(frase, "INICIANDO EM %d", i);
-        ssd1306_draw_string(&ssd, frase, 10, 10);
-        ssd1306_send_data(&ssd);
-        sleep_ms(1000);
-    }
-    ssd1306_fill(&ssd, false);
+    // Exibe uma mensagem de boas vindas
+    ssd1306_draw_string(&ssd, "BEM VINDO", 2,4);
     ssd1306_send_data(&ssd);
-  
+
     while (true) {
         // Verifica se o cabo USB está conectado
         if(stdio_usb_connected()){
             char c;
-            ssd1306_draw_string(&ssd, "TECLA: ",2,4);
+            ssd1306_draw_string(&ssd, "TECLA:   ",2,4);
 
             printf("Digite um caractere para ser exibido no display\n");
 
@@ -114,7 +105,7 @@ int main()
                 ssd1306_draw_char(&ssd, c, 58, 4);
                 ssd1306_send_data(&ssd);
                 int num = c - '0';
-                np_set_leds(matriz[num], 0, 100, 100);
+                np_set_leds(matriz[num], 0, 50, 50);
             } else{
                 printf("Caractere inválido\n");
             }
