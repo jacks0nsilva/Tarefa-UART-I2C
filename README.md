@@ -14,7 +14,7 @@ O projeto é composto por:
 
 ## Vídeo de demonstração 📹
 
-[Vídeo de apresentação do projeto](link_para_video)
+[Vídeo de apresentação do projeto](https://drive.google.com/file/d/1p33Xp1W8i2tf9JfYoDewDHImfJSwaRyE/view?usp=drive_link)
 
 ## Hardware 🛠️
 
