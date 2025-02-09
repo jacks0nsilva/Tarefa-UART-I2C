@@ -171,10 +171,7 @@ void ssd1306_draw_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y)
   {
     index = (c - 'a' + 38) * 8; // Índices 38-63 para letras minúsculas
   }
-  else
-  {
-    return; // Se o caractere não for reconhecido, não faz nada
-  }
+  
 
   for (uint8_t i = 0; i < 8; ++i)
   {

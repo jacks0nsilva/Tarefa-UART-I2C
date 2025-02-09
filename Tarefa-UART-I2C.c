@@ -86,15 +86,21 @@ int main()
 
     
 
+    // Exibe uma mensagem de inicialização no display OLED
+    for(int i =5; i > 0; i-- ){
+        char frase[20];
+        sprintf(frase, "INICIANDO EM %d", i);
+        ssd1306_draw_string(&ssd, frase, 10, 10);
+        ssd1306_send_data(&ssd);
+        sleep_ms(1000);
+    }
     ssd1306_fill(&ssd, false);
-    ssd1306_draw_string(&ssd, "BEM VINDO", 10, 10);
     ssd1306_send_data(&ssd);
-
+  
     while (true) {
         // Verifica se o cabo USB está conectado
         if(stdio_usb_connected()){
             char c;
-            ssd1306_fill(&ssd, false);
             ssd1306_draw_string(&ssd, "TECLA: ",2,4);
 
             printf("Digite um caractere para ser exibido no display\n");
@@ -126,17 +132,23 @@ void gpio_irq_handler(uint gpio, uint32_t events){
         char *led_status;
 
         np_clear(); // Apaga a matriz de LEDs
-        ssd1306_fill(&ssd, false);
+        
         // Verifica qual botão foi pressionado e alterna o estado do LED correspondente
         if(gpio == gpio_pins[0].pin){
             gpio_put(gpio_pins[2].pin, !gpio_get(gpio_pins[2].pin));
-            led_status = gpio_get(gpio_pins[2].pin) ? "LED VERDE ON" : "LED VERDE OFF";
+
+            printf(gpio_get(gpio_pins[2].pin) ? "LED VERDE ACESO\n" : "LED VERDE APAGADO\n");
+            led_status = gpio_get(gpio_pins[2].pin) ? "LED VERDE ON  " : "LED VERDE OFF";
+
             ssd1306_draw_string(&ssd,led_status, 2, 14);
             ssd1306_send_data(&ssd);
         } else if (gpio == gpio_pins[1].pin){
             gpio_put(gpio_pins[3].pin, !gpio_get(gpio_pins[3].pin));
-            led_status = gpio_get(gpio_pins[3].pin) ? "LED AZUL ON" : "LED AZUL OFF";
-            ssd1306_draw_string(&ssd,led_status, 2, 14);
+
+            printf(gpio_get(gpio_pins[3].pin) ? "LED AZUL ACESO\n" : "LED AZUL APAGADO\n");
+            led_status = gpio_get(gpio_pins[3].pin) ? "LED AZUL ON  " : "LED AZUL OFF";
+
+            ssd1306_draw_string(&ssd,led_status, 2, 24);
             ssd1306_send_data(&ssd);
         }
     }
