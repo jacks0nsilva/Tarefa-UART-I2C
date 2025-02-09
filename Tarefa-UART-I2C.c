@@ -30,16 +30,17 @@ typedef struct {
 static volatile uint32_t last_time = 0;
 
 // Vetor de pinos GPIO
-GPIO_PIN gpio_pins[4] = {
+GPIO_PIN gpio_pins[5] = {
     {5, GPIO_IN}, // BOTÃO A
     {6, GPIO_IN}, // BOTÃO B
     {11, GPIO_OUT}, // LED VERDE
     {12, GPIO_OUT}, // LED AZUL
+    {13, GPIO_OUT} // LED VERMELHO
 };
 
 // Função para inicializar os pinos GPIO
 void initialize_gpio(GPIO_PIN *pins){
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 5; i++){
         gpio_init(pins[i].pin);
         gpio_set_dir(pins[i].pin, pins[i].direction);
         // Se o pino for de saída, inicializa o pino em baixo nível
