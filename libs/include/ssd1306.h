@@ -2,9 +2,11 @@
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 
+// Define a largura e a altura do display OLED
 #define WIDTH 128
 #define HEIGHT 64
 
+// Define as instruções do display OLED
 typedef enum {
   SET_CONTRAST = 0x81,
   SET_ENTIRE_ON = 0xA4,
@@ -25,6 +27,8 @@ typedef enum {
   SET_CHARGE_PUMP = 0x8D
 } ssd1306_command_t;
 
+
+// Estrutura para representar o display OLED
 typedef struct {
   uint8_t width, height, pages, address;
   i2c_inst_t *i2c_port;
@@ -34,6 +38,8 @@ typedef struct {
   uint8_t port_buffer[2];
 } ssd1306_t;
 
+
+// Funções de configuraçção e envio de dados para o display OLED
 void ssd1306_init(ssd1306_t *ssd, uint8_t width, uint8_t height, bool external_vcc, uint8_t address, i2c_inst_t *i2c);
 void ssd1306_config(ssd1306_t *ssd);
 void ssd1306_command(ssd1306_t *ssd, uint8_t command);
